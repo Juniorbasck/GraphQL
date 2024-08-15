@@ -5,6 +5,10 @@ const typeDefs = gql`
     helloWord: String!
  
     }
+
+    type Mutation {
+      createUser(name: String!): String
+    }
 `;
 
 const server = new ApolloServer({
@@ -14,6 +18,12 @@ const server = new ApolloServer({
       helloWord: () => {
         return "Hello World";
       },
+    },
+
+    Mutation: {
+      createUser: (parent, args, ctx) => {
+        console.log(args);
+      }
     },
   },
 });
